@@ -19,7 +19,7 @@ Blog.int(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        userName: {
+        user_Name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
