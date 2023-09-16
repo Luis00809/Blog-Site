@@ -3,6 +3,8 @@ const Blog = require('../models/Blog');
 
 // will display the homepage with all exitisting blog posts if there are any created
 // gets all blogs
+
+// works in insomnia
 router.get('/', async (req, res) => {
     const blogData = await Blog.findAll().catch((err) => {
         res.json(err);
@@ -14,6 +16,10 @@ router.get('/', async (req, res) => {
     // for now using for making sure routes work
 });
 
+
+// get blog by id
+
+// works in insomnia
 router.get('/blog/:id', async (req, res) => {
     try {
         const blogData = await Blog.findByPk(req.params.id);
@@ -32,3 +38,5 @@ router.get('/blog/:id', async (req, res) => {
         res.status(500).json(err)
     }
 })
+
+module.exports = router;

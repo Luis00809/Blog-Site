@@ -4,12 +4,7 @@ const Blog = require('../../models/Blog');
 // create a blog
 router.post('/', async (req, res) => {
     try {
-        const blogData = await Blog.create({
-            title: req.params.title,
-            description: req.body.description,
-            user_Name: req.params.user_Name,
-            date: req.params.date
-        });
+        const blogData = await Blog.create(req.body);
 
     res.status(200).json(blogData);
         // will need to change to a render() later
@@ -19,14 +14,11 @@ router.post('/', async (req, res) => {
 });
 
 // update a blog
+// kinda works, when using on insomnia I get an error 
+// but when I get all routes, the updated blog appears???
 router.put('/:id', async (req, res) => {
     try {
-    const blogData = await Blog.create({
-        title: req.params.title,
-        description: req.body.description,
-        user_Name: req.params.user_Name,
-        date: req.params.date,
-        }, 
+    const blogData = await Blog.update(req.body, 
         {
             where: {
                 id: req.params.id,
