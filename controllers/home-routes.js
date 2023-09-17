@@ -6,12 +6,20 @@ const Blog = require('../models/Blog');
 
 // works in insomnia
 router.get('/', async (req, res) => {
-    const blogData = await Blog.findAll().catch((err) => {
-        res.json(err);
-    });
 
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    res.status(200).json(blogs);
+    try{
+        const blogData = await Blog.findAll();
+        const blogs = blogData.map((blog) => blog.get({ plain: true }));
+        
+        res.render('homepage', {
+            blogs,
+        });
+        res.status(200);
+
+    } catch (err) {
+        console.log(err);
+    res.status(500).json(err);
+    }
     // will need to change to display handlebars later 
     // for now using for making sure routes work
 });
@@ -29,7 +37,9 @@ router.get('/blog/:id', async (req, res) => {
         }
 
         const blog = blogData.get({ plain: true });
-        res.status(200).json(blog);
+
+        // res.render('TBA')
+        res.status(200)
 
         // also need to change this route to a render method 
         // will insomnia work with this set up????
