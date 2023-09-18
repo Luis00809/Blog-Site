@@ -1,18 +1,17 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connections');
 
-class Blog extends Model {}
+class Comment extends Model {};
 
-
-Blog.init(
+Comment.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true, 
-            autoIncrement: true,
+            autoIncrement: true
         },
-        title: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -20,21 +19,16 @@ Blog.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        user_Name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        date: {
-            type: DataTypes.DATE,
-            allowNull: false
-        }
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'blog',
+        modelName: 'comment',
     }
 );
 
-module.exports = Blog;
+// add the if helper to handlebar so if comment then display
+
+module.exports = Comment;
+

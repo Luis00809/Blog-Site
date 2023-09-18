@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Blog = require('../models/Blog');
+const Comment = require('../models/Comment');
 
 // will display the homepage with all exitisting blog posts if there are any created
 // gets all blogs
@@ -8,12 +9,15 @@ const Blog = require('../models/Blog');
 router.get('/', async (req, res) => {
 
     try{
-        const blogData = await Blog.findAll();
+        const blogData = await Blog.findAll({
+            // include: [{ model: Comment}],
+        });
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
         
         res.render('homepage', {
             blogs,
         });
+
         res.status(200);
 
     } catch (err) {
