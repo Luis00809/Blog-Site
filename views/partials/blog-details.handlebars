@@ -1,32 +1,45 @@
 <div class="card text-bg-primary mb-3 col-12 w-75">
   <div class="card-header">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title">{{title}}</h5>
-                </div>
-                <div class="col">
-                  <p>{{user_Name}} on {{date}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="card-text">{{description}}</p>
-<div class="dropdown">
-                <button id="commentBTN" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                  Add a comment
-                </button>
-                <form class="dropdown-menu p-4">
-                  <div class="mb-3">
-                    <label class="form-label">Comment:</label>
-                    <input class="form-control" id="commentDescription">
-                  </div>
-                  <div class="mb-3">
-                    <div class="form-check">
-                      
-                    </div>
-                  </div>
-                  <button type="submit" id="postBTN" class="btn btn-primary">Post</button>
-                </form>
-              </div>            </div>
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title">{{title}}</h5>
+      </div>
+      <div class="col">
+        <p>{{user_Name}} on {{date}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{description}}</p>
+    <div class="dropdown">
+      <button id="commentBTN" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+        Add a comment
+      </button>
+      <form class="dropdown-menu p-4">
+        <div class="mb-3">
+          <label class="form-label">Comment:</label>
+          <input class="form-control" id="commentDescription">
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <!-- Additional form elements can be added here -->
           </div>
+        </div>
+        <button type="submit" id="postBTN" class="btn btn-primary">Post</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    {{#if comments}}
+    <h3>Comments:</h3>
+    {{#each comments}}
+    <div class="card border-light mb-3" style="max-width: 18rem;">
+      <div class="card-header">{{this.username}}:</div>
+      <div class="card-body">
+        <p class="card-text">{{this.description}}</p>
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
+  </div>
 </div>
