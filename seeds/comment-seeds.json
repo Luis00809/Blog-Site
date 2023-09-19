@@ -13,5 +13,10 @@
         "username": "agg616",
         "description": "pretty cool",
         "blog_id": 2
+    },
+    {
+        "username": "testtest",
+        "description": "please work",
+        "blog_id": 1
     }
 ]
