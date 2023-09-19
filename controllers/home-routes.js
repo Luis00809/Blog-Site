@@ -5,12 +5,11 @@ const Comment = require('../models/Comment');
 // will display the homepage with all exitisting blog posts if there are any created
 // gets all blogs
 
-// works in insomnia
 router.get('/', async (req, res) => {
 
     try{
         const blogData = await Blog.findAll({
-            // include: [{ model: Comment}],
+            include: [{ model: Comment}],
         });
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
         

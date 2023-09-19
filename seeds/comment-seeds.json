@@ -1,14 +1,17 @@
 [
     {
         "username": "dav33",
-        "description": "Yeah I agree"
+        "description": "Yeah I agree",
+        "blog_id": 3
     },
     {
         "username": "Lu778",
-        "description": "I disagree"
+        "description": "I disagree",
+        "blog_id": 1
     }, 
     {
         "username": "agg616",
-        "description": "pretty cool"
+        "description": "pretty cool",
+        "blog_id": 2
     }
 ]
