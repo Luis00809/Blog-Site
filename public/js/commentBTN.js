@@ -18,7 +18,9 @@ form.addEventListener('submit', function(event) {
             'Content-Type': 'application/json',
           },
     });
+    console.log(response);
 
+    document.location.replace('/');
     // if (response.ok) {
     //     // document.location.replace('/');
     //     console.log("comment created")
