@@ -2,6 +2,7 @@
 const form = document.querySelector('#updateForm');
 const create = document.querySelector('#createBlog');
 
+//  update a comment
 form.addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -20,6 +21,7 @@ form.addEventListener('submit', function(event) {
         },
     });
 });
+
 
 create.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -41,6 +43,8 @@ create.addEventListener('submit', function(event) {
         headers: {
             'Content-Type': 'application/json',
         },
+
+        document.location.replace('/')
     });
     console.log(response);
 })
