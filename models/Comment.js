@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connections');
+const Blog = require('./Blog');
 
 class Comment extends Model {};
 
@@ -34,6 +35,11 @@ Comment.init(
         modelName: 'comment',
     }
 );
+
+// Comment.belongsTo(Blog, {
+//     foreignKey: 'blog_id',
+//     onDelete: 'CASCADE',
+//   });
 
 // add the if helper to handlebar so if comment then display
 
