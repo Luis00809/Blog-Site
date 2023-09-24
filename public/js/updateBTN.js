@@ -1,9 +1,7 @@
-
 const updateButtons = document.querySelectorAll('.updateBTN');
 const createBlog = document.querySelector('#postBTN');
 
 //  update a blog
-// only works on the first available option will have to fix
 updateButtons.forEach(button => {
 
     button.addEventListener('click', async function(event) {
@@ -14,7 +12,6 @@ updateButtons.forEach(button => {
         const id = button.closest('.dropdown-menu').querySelector('#forBlogId').dataset.blogid;
         const user_Name = "fake user";
         const date = "3/4/23";
-        console.log(id);
     
         try {
             const response = await fetch(`/api/blog/${id}`, {
@@ -36,8 +33,7 @@ updateButtons.forEach(button => {
             }
     
             console.log('Blog updated successfully');
-            // Optionally, you can redirect the user to another page after the update
-            // document.location.replace('/user');
+            
         } catch (error) {
             console.error(error);
         }
