@@ -1,9 +1,9 @@
 
 const form = document.querySelector('#updateForm');
-const create = document.querySelector('#createBlog');
+// const create = document.querySelector('#createBlog');
 
 //  update a comment
-form.addEventListener('submit', function(event) {
+form.addEventListener('click', function(event) {
     event.preventDefault();
 
     const title = document.querySelector('#title').value;
@@ -23,7 +23,10 @@ form.addEventListener('submit', function(event) {
 });
 
 
-create.addEventListener('submit', function(event) {
+const createBlog = document.querySelector('#postBTN');
+
+// create a blog
+createBlog.addEventListener('click', function(event) {
     event.preventDefault();
 
     const title = document.querySelector('#blogTitle').value;
@@ -44,7 +47,7 @@ create.addEventListener('submit', function(event) {
             'Content-Type': 'application/json',
         },
 
-        document.location.replace('/')
     });
     console.log(response);
+    document.location.replace('/user')
 })
