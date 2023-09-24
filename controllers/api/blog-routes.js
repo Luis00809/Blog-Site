@@ -73,12 +73,12 @@ router.put('/:id', async (req, res) => {
         }
         );
 
-        res.status(200).res.json(blogData);
+        res.status(200).json(blogData);
         // will need to change to a render() later
 
     } catch (err) {
         res.status(500).json(err)
- 
+        console.log(err);
     }
 })
 

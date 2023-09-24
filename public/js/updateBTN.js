@@ -1,29 +1,45 @@
+const updateButtons = document.querySelectorAll('.updateBTN');
+const createBlog = document.querySelector('#postBTN');
 
-const form = document.querySelector('#updateForm');
-// const create = document.querySelector('#createBlog');
+//  update a blog
+updateButtons.forEach(button => {
 
-//  update a comment
-form.addEventListener('click', function(event) {
-    event.preventDefault();
+    button.addEventListener('click', async function(event) {
+        event.preventDefault();
 
-    const title = document.querySelector('#title').value;
-    const description = document.querySelector('#commentDescription').value;
-    username = "fake user";
+        const title = button.closest('.dropdown-menu').querySelector('#title').value;
+        const description = button.closest('.dropdown-menu').querySelector('#commentDescription').value;
+        const id = button.closest('.dropdown-menu').querySelector('#forBlogId').dataset.blogid;
+        const user_Name = "fake user";
+        const date = "3/4/23";
+    
+        try {
+            const response = await fetch(`/api/blog/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    description,
+                    user_Name,
+                    title,
+                    date
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response);
 
-    const response = fetch('/api/comment/:id', {
-        method: "PUT",
-        body: JSON.stringify({
-            description,
-            username,
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
+            if (!response.ok) {
+                throw new Error('Failed to update blog');
+            }
+    
+            console.log('Blog updated successfully');
+            
+        } catch (error) {
+            console.error(error);
+        }
+        document.location.replace('/user')
     });
 });
-
-
-const createBlog = document.querySelector('#postBTN');
 
 // create a blog
 createBlog.addEventListener('click', function(event) {
@@ -50,4 +66,4 @@ createBlog.addEventListener('click', function(event) {
     });
     console.log(response);
     document.location.replace('/user')
-})
+});
