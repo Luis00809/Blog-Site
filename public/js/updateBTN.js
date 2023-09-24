@@ -1,5 +1,6 @@
 const updateButtons = document.querySelectorAll('.updateBTN');
 const createBlog = document.querySelector('#postBTN');
+const deleteBlog = document.querySelectorAll('.deleteBTN')
 
 //  update a blog
 updateButtons.forEach(button => {
@@ -67,3 +68,27 @@ createBlog.addEventListener('click', function(event) {
     console.log(response);
     document.location.replace('/user')
 });
+
+// delete a blog
+deleteBlog.forEach(button => {
+    button.addEventListener('click', async function(event) {
+        event.preventDefault();
+
+        const id = event.target.parentElement.dataset.blogid;
+        try {
+            const response = await fetch(`/api/blog/${id}`, {
+                method: "DELETE",
+
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+        console.log('deleted blog id ' + id)
+        document.location.replace('/user')
+
+    });
+})
