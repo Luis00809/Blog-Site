@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const res = require('express/lib/response');
 const Blog = require('../../models/Blog');
 const Comment = require('../../models/Comment');
 
@@ -61,8 +62,6 @@ router.post('/', async (req, res) => {
 });
 
 // update a blog
-// kinda works, when using on insomnia I get an error 
-// but when I get all routes, the updated blog appears???
 router.put('/:id', async (req, res) => {
     try {
     const blogData = await Blog.update(req.body, 
@@ -75,6 +74,25 @@ router.put('/:id', async (req, res) => {
 
         res.status(200).json(blogData);
         // will need to change to a render() later
+
+    } catch (err) {
+        res.status(500).json(err)
+        console.log(err);
+    }
+});
+
+
+// delete a blog
+router.delete('/:id', async (req, res) => {
+    try {
+
+        const blogData = await Blog.destroy( {
+            where: {
+                id: req.params.id
+            }
+        });
+
+        res.status(200).json(blogData);
 
     } catch (err) {
         res.status(500).json(err)
