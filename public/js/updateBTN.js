@@ -1,29 +1,49 @@
 
-const form = document.querySelector('#updateForm');
-// const create = document.querySelector('#createBlog');
+const updateButtons = document.querySelectorAll('.updateBTN');
+const createBlog = document.querySelector('#postBTN');
 
-//  update a comment
-form.addEventListener('click', function(event) {
-    event.preventDefault();
+//  update a blog
+// only works on the first available option will have to fix
+updateButtons.forEach(button => {
 
-    const title = document.querySelector('#title').value;
-    const description = document.querySelector('#commentDescription').value;
-    username = "fake user";
+    button.addEventListener('click', async function(event) {
+        event.preventDefault();
 
-    const response = fetch('/api/comment/:id', {
-        method: "PUT",
-        body: JSON.stringify({
-            description,
-            username,
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        const title = button.closest('.dropdown-menu').querySelector('#title').value;
+        const description = button.closest('.dropdown-menu').querySelector('#commentDescription').value;
+        const id = button.closest('.dropdown-menu').querySelector('#forBlogId').dataset.blogid;
+        const user_Name = "fake user";
+        const date = "3/4/23";
+        console.log(id);
+    
+        try {
+            const response = await fetch(`/api/blog/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    description,
+                    user_Name,
+                    title,
+                    date
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response);
+
+            if (!response.ok) {
+                throw new Error('Failed to update blog');
+            }
+    
+            console.log('Blog updated successfully');
+            // Optionally, you can redirect the user to another page after the update
+            // document.location.replace('/user');
+        } catch (error) {
+            console.error(error);
+        }
+        document.location.replace('/user')
     });
 });
-
-
-const createBlog = document.querySelector('#postBTN');
 
 // create a blog
 createBlog.addEventListener('click', function(event) {
@@ -50,4 +70,4 @@ createBlog.addEventListener('click', function(event) {
     });
     console.log(response);
     document.location.replace('/user')
-})
+});

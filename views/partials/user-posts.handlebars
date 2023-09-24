@@ -11,24 +11,24 @@
             </div>
             <div class="card-body">
               <p class="card-text">{{description}}</p>
-<div class="dropdown">
-                <button id="commentBTN" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+          <div class="dropdown">
+                <button id="commentBTN" class=" btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
                   Update
                 </button>
-                <form id="updateForm" class="dropdown-menu p-4">
-                  <div class="mb-3">
-                    <label class="form-label">Title:</label>
-                    <input class="form-control" id="title" value="{{title}}">
-                    <label class="form-label">Comment:</label>
-                    <input class="form-control" id="commentDescription" value="{{description}}">
+                <div class="dropdown-menu p-4">
+                  <div id="forBlogId" class="mb-3" data-blogId="{{id}}">
+                    <label>Title:</label>
+                    <input id="title" value="{{title}}">
+                    <label>Comment:</label>
+                    <input id="commentDescription" value="{{description}}">
                   </div>
                   <div class="mb-3">
-                    <div class="form-check">
-                      
+                    <div>
+
                     </div>
                   </div>
-                  <button type="submit" id="postBTN" class="btn btn-primary">Update</button>
-                </form>
+                    <button type="button" id="forUpdate" class=" updateBTN btn btn-primary">Update</button>
+                </div>
               </div>           
           </div>
 </div>
