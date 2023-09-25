@@ -2,11 +2,12 @@ const router = require('express').Router();
 const Blog = require('../models/Blog');
 const Comment = require('../models/Comment');
 const connect = require('../models/index');
+const authenticate = require('../utils/auth')
 
 // will display the homepage with all exitisting blog posts if there are any created
 // gets all blogs
 
-router.get('/', async (req, res) => {
+router.get('/', authenticate, async (req, res) => {
 
     try{
         const blogData = await Blog.findAll({
@@ -16,6 +17,7 @@ router.get('/', async (req, res) => {
         
         res.render('homepage', {
             blogs,
+            loggedIn: req.session.loggedIn,
         });
         
         // res.status(200).json(blogs);
@@ -31,7 +33,7 @@ router.get('/', async (req, res) => {
 // get blog by id
 
 // works in insomnia
-router.get('/blog/:id', async (req, res) => {
+router.get('/blog/:id', authenticate, async (req, res) => {
     try {
         const blogData = await Blog.findByPk(req.params.id);
         if (!blogData){
@@ -60,5 +62,10 @@ router.get('/login', (req, res) => {
 
     res.render('login');
 });
+
+
+router.get('/signUp', (req, res) => {
+    res.render('signUp');
+})
 
 module.exports = router;

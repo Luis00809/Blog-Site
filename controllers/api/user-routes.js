@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const res = require('express/lib/response');
-// const res = require('express/lib/response');
 const User = require('../../models/User');
 
 
@@ -15,8 +13,9 @@ router.post('/signUp', async (req, res) => {
 
         req.session.save(() => {
             req.session.loggedIn = true;
-            req.status(200).json(userData);
+            res.status(200).json(userData);
         });
+        // res.json(userData);
 
     } catch (err) {
         console.log(err);
@@ -48,9 +47,11 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.loggedIn = true;
+            res.status(200).json({ user: userData, message: 'Logged in!'});
+
         });
 
-        res.status(200).json({ user: userData, message: 'Logged in!'});
+
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -67,4 +68,15 @@ router.post('/logout', (req, res) => {
     }
 });
 
+
+router.get('/allUsers', async (req, res) => {
+    try{
+        const users = await User.findAll();
+        res.json(users);
+
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 module.exports = router;

@@ -1,19 +1,19 @@
 const router = require('express').Router();
 const Blog = require('../models/Blog');
 const Comment = require('../models/Comment');
+const authenticate = require('../utils/auth');
 
-router.get('/user', async (req,res) => {
+router.get('/user', authenticate, async (req,res) => {
     try {
 
         // should be all blogs with associated comments
-        // still need to create the association between blogs and comments
-        // will add the include and then "where:" later when set up
 
         const userData = await Blog.findAll();
         const userInput = userData.map((data) => data.get({ plain: true }));
 
         res.render('Dashboard', {
             userInput,
+            loggedIn: req.session.loggedIn,
         });
         res.status(200);
 
