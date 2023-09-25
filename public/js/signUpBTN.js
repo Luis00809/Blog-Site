@@ -20,4 +20,4 @@ const signUpHandler = async (event) => {
     }
 };
 
-document.querySelector('#signUpBTN').addEventListener('submit', signUpHandler);
+document.querySelector('#signUpBTN').addEventListener('click', signUpHandler);
