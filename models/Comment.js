@@ -26,6 +26,14 @@ Comment.init(
                 model: 'blog',
                 key: 'id'
             }
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         }
     },
     {
@@ -35,13 +43,6 @@ Comment.init(
         modelName: 'comment',
     }
 );
-
-// Comment.belongsTo(Blog, {
-//     foreignKey: 'blog_id',
-//     onDelete: 'CASCADE',
-//   });
-
-// add the if helper to handlebar so if comment then display
 
 module.exports = Comment;
 

@@ -2,7 +2,7 @@ const router = require('express').Router();
 const res = require('express/lib/response');
 const Blog = require('../../models/Blog');
 const Comment = require('../../models/Comment');
-
+const authenticate = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
 
@@ -50,9 +50,17 @@ router.get('/:id', async (req, res) => {
 
 
 // create a blog
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
-        const blogData = await Blog.create(req.body);
+        console.log(req.session);
+        const body = {
+            title: req.body.title,
+            desciption: req.body.desciption,
+            user_id: req.session.userId,
+            user_Name: req.body.user_Name,
+            date: req.body.date,
+        }
+        const blogData = await Blog.create(body);
 
     res.status(200).json(blogData);
         // will need to change to a render() later

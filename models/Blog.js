@@ -27,6 +27,14 @@ Blog.init(
         date: {
             type: DataTypes.DATE,
             allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,   
+            references: {
+                model: 'user',
+                key: "id"
+            }
         }
     },
     {
@@ -36,10 +44,5 @@ Blog.init(
         modelName: 'blog',
     }
 );
-
-// Blog.hasMany(Comment, {
-//     foreignKey: 'blog_id',
-//     onDelete: 'CASCADE',
-//   });
 
 module.exports = Blog;
