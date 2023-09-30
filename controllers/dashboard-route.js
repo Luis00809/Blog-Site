@@ -4,7 +4,7 @@ const Comment = require('../models/Comment');
 const authenticate = require('../utils/auth');
 const User = require('../models/User');
 
-router.get('/user', authenticate, async (req,res) => {
+router.get('/user/:id', authenticate, async (req,res) => {
     try {
 
         // should be all blogs with associated comments
