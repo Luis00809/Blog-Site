@@ -1,22 +1,28 @@
 [
     {
-        "username": "dav33",
+        "username": "dav123",
         "description": "Yeah I agree",
-        "blog_id": 3
+        "blog_id": 3,
+        "user_id": 1
     },
     {
-        "username": "Lu778",
+        "username": "luis123",
         "description": "I disagree",
-        "blog_id": 1
+        "blog_id": 1,
+        "user_id": 2
+
     }, 
     {
         "username": "agg616",
         "description": "pretty cool",
-        "blog_id": 2
+        "blog_id": 2,
+        "user_id": 3
+
     },
     {
-        "username": "testtest",
+        "username": "agg616",
         "description": "please work",
-        "blog_id": 1
+        "blog_id": 1,
+        "user_id": 3
     }
 ]

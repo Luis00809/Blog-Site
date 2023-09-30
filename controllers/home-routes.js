@@ -14,7 +14,7 @@ router.get('/', authenticate, async (req, res) => {
             include: [{ model: Comment}],
         });
         const blogs = blogData.map((blog) => blog.get({ plain: true }));
-        
+        console.log(blogs);
         res.render('homepage', {
             blogs,
             loggedIn: req.session.loggedIn,
