@@ -66,7 +66,7 @@ createBlog.addEventListener('click', function(event) {
 
     });
     console.log(response);
-    document.location.replace('/user')
+    location.reload(true);
 });
 
 // delete a blog
