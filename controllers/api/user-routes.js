@@ -81,5 +81,15 @@ router.get('/allUsers', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
-})
+});
+
+router.get('/session', async (req, res) => {
+    try {
+        res.json({ userId: req.session.userId });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+} )
 module.exports = router;
